@@ -24,7 +24,8 @@ export default function RootLayout({ children }) {
           <div className="container navbar-container">
             <h1 className="logo">MangaCollab</h1>
             <nav className="nav-links">
-              <a href="/search" className="nav-link">Discover</a>
+              <a href="/search" className="nav-link">Discover Creators</a>
+              <a href="/gallery" className="nav-link">Gallery (Read)</a>
               <a href="/login" className="btn btn-outline">Log In</a>
               <a href="/register" className="btn btn-primary">Sign Up</a>
             </nav>
