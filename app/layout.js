@@ -34,6 +34,14 @@ export default function RootLayout({ children }) {
         <main className="main-content">
           {children}
         </main>
+        <footer className="footer">
+          <div className="container footer-container">
+            <p>&copy; {new Date().getFullYear()} MangaCollab. All rights reserved.</p>
+            <div className="footer-links">
+              <a href="/terms" className="footer-link">Terms and Conditions</a>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
