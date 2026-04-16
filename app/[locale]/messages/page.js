@@ -1,24 +1,26 @@
 "use client";
 
 import { useState } from 'react';
+import { useTranslation } from '../../../components/TranslationProvider';
 
 export default function Messages() {
+  const dict = useTranslation();
   const [activeMessage, setActiveMessage] = useState(null);
   const [replyText, setReplyText] = useState('');
 
   const inbox = [
-    { id: 1, name: "Kenta (Writer)", role: "writer", unread: true, lastMsg: "Hey, I loved your art portfolio! I have a dark fantasy short story that fits perfectly." },
-    { id: 2, name: "Aoi (Artist)", role: "illustrator", unread: false, lastMsg: "Thanks for the script, I will start sketching tomorrow." }
+    { id: 1, name: "Kenta (Writer)", role: "writer", unread: true, lastMsg: dict.messages.lastMsg1 },
+    { id: 2, name: "Aoi (Artist)", role: "illustrator", unread: false, lastMsg: dict.messages.lastMsg2 }
   ];
 
   const conversation = [
-    { sender: "Kenta (Writer)", text: "Hey, I loved your art portfolio! I have a dark fantasy short story that fits perfectly.", time: "10:30 AM" }
+    { sender: "Kenta (Writer)", text: dict.messages.lastMsg1, time: "10:30 AM" }
   ];
 
   const sendReply = (e) => {
     e.preventDefault();
     if(!replyText) return;
-    alert(`Sent message: ${replyText}`);
+    alert(`${dict.messages.sentAlert} ${replyText}`);
     setReplyText('');
   };
 
@@ -26,7 +28,7 @@ export default function Messages() {
     <div className="container" style={{ padding: '3rem 1.5rem', display: 'flex', gap: '2rem', height: 'calc(100vh - 70px)' }}>
       {/* Inbox Sidebar */}
       <div style={{ width: '300px', borderRight: '1px solid var(--border-color)', paddingRight: '1rem', display: 'flex', flexDirection: 'column' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem' }}>Messages</h2>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem' }}>{dict.messages.title}</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', overflowY: 'auto' }}>
           {inbox.map(msg => (
             <div 
@@ -58,7 +60,7 @@ export default function Messages() {
           <>
             <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color)' }}>
               <h3 style={{ fontWeight: 700 }}>{activeMessage.name}</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{activeMessage.role === 'writer' ? 'Novelist' : 'Illustrator'}</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{activeMessage.role === 'writer' ? dict.messages.novelist : dict.messages.illustrator}</p>
             </div>
             
             <div style={{ flex: 1, padding: '1.5rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -76,16 +78,16 @@ export default function Messages() {
                   type="text" 
                   value={replyText} 
                   onChange={(e) => setReplyText(e.target.value)} 
-                  placeholder="Type a message..." 
+                  placeholder={dict.messages.typeMessage} 
                   style={{ flex: 1, padding: '0.75rem 1rem', borderRadius: '99px', border: '1px solid var(--border-color)', outline: 'none' }}
                 />
-                <button type="submit" className="btn btn-primary" style={{ borderRadius: '99px' }}>Send</button>
+                <button type="submit" className="btn btn-primary" style={{ borderRadius: '99px' }}>{dict.messages.send}</button>
               </form>
             </div>
           </>
         ) : (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
-            Select a conversation to start messaging
+            {dict.messages.selectChat}
           </div>
         )}
       </div>

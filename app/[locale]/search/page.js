@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useTranslation } from '../../../components/TranslationProvider';
 
 export default function SearchDirectory() {
+  const dict = useTranslation();
   const [filterRole, setFilterRole] = useState('all');
   
   // Dummy Data for the MVP
   const users = [
-    { id: 1, name: "Yuki", role: "illustrator", style: "Anime", desc: "Specializes in expressive faces and dynamic poses." },
-    { id: 2, name: "Shiro", role: "writer", style: "Fantasy", desc: "Looking for an artist for a medieval fantasy one-shot." },
-    { id: 3, name: "Jin", role: "illustrator", style: "Dark", desc: "Monochrome, heavy shadows, perfect for horror." },
-    { id: 4, name: "Rin", role: "writer", style: "Romance", desc: "Slice of life and school romance stories." }
+    { id: 1, name: "Yuki", role: "illustrator", style: "Anime", desc: dict.search.desc1 },
+    { id: 2, name: "Shiro", role: "writer", style: "Fantasy", desc: dict.search.desc2 },
+    { id: 3, name: "Jin", role: "illustrator", style: "Dark", desc: dict.search.desc3 },
+    { id: 4, name: "Rin", role: "writer", style: "Romance", desc: dict.search.desc4 }
   ];
 
   const filteredUsers = filterRole === 'all' ? users : users.filter(u => u.role === filterRole);
@@ -19,23 +20,23 @@ export default function SearchDirectory() {
   return (
     <div className="container" style={{ padding: '3rem 1.5rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Discover Creators</h1>
-        <p style={{ color: 'var(--text-muted)' }}>Find your next creative partner by style or role</p>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>{dict.search.title}</h1>
+        <p style={{ color: 'var(--text-muted)' }}>{dict.search.subtitle}</p>
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '3rem' }}>
         <button 
           className={`btn ${filterRole === 'all' ? 'btn-primary' : 'btn-outline'}`}
           onClick={() => setFilterRole('all')}
-        >All</button>
+        >{dict.search.all}</button>
         <button 
           className={`btn ${filterRole === 'writer' ? 'btn-primary' : 'btn-outline'}`}
           onClick={() => setFilterRole('writer')}
-        >Writers</button>
+        >{dict.search.writers}</button>
         <button 
           className={`btn ${filterRole === 'illustrator' ? 'btn-primary' : 'btn-outline'}`}
           onClick={() => setFilterRole('illustrator')}
-        >Illustrators</button>
+        >{dict.search.illustrators}</button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
@@ -52,7 +53,6 @@ export default function SearchDirectory() {
           onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
           onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            {/* Dummy Avatar/Portfolio Cover */}
             <div style={{ height: '160px', background: u.role === 'writer' ? 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)' : 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>
               {u.role === 'writer' ? '📝' : '🎨'}
             </div>
@@ -74,7 +74,7 @@ export default function SearchDirectory() {
               <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem', minHeight: '3rem' }}>
                 {u.desc}
               </p>
-              <button className="btn btn-outline" style={{ width: '100%' }}>View Profile</button>
+              <button className="btn btn-outline" style={{ width: '100%' }}>{dict.search.viewProfile}</button>
             </div>
           </div>
         ))}

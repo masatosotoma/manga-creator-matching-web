@@ -2,29 +2,31 @@
 
 import { useState } from 'react';
 import styles from '../register/register.module.css';
+import { useTranslation } from '../../../components/TranslationProvider';
 
 export default function Login() {
+  const dict = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
     // Simulate login
-    alert(`Logged in as ${email}`);
-    window.location.href = '/dashboard';
+    alert(`${dict.login.alert} ${email}`);
+    window.location.href = `/${dict.locale}/dashboard`;
   };
 
   return (
     <div className="container">
       <div className={styles.authContainer}>
         <div className={styles.authCard}>
-          <h2 className={styles.authTitle}>Welcome Back</h2>
-          <p className={styles.authSubtitle}>Log in to continue your creative projects</p>
+          <h2 className={styles.authTitle}>{dict.login.title}</h2>
+          <p className={styles.authSubtitle}>{dict.login.subtitle}</p>
           
           <form onSubmit={handleLogin} className={styles.authForm}>
             
             <div className={styles.formGroup}>
-              <label>Email Address</label>
+              <label>{dict.login.email}</label>
               <input 
                 type="email" 
                 value={email} 
@@ -35,7 +37,7 @@ export default function Login() {
             </div>
 
             <div className={styles.formGroup}>
-              <label>Password</label>
+              <label>{dict.login.password}</label>
               <input 
                 type="password" 
                 value={password} 
@@ -46,12 +48,12 @@ export default function Login() {
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '0.8rem' }}>
-              Log In
+              {dict.login.submit}
             </button>
           </form>
           
           <div className={styles.authFooter}>
-            Don't have an account? <a href="/register" style={{ color: 'var(--primary)', fontWeight: '600' }}>Sign Up</a>
+            {dict.login.noAccount} <a href={`/${dict.locale}/register`} style={{ color: 'var(--primary)', fontWeight: '600' }}>{dict.login.signup}</a>
           </div>
         </div>
       </div>

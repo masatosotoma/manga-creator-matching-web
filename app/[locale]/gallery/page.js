@@ -1,8 +1,10 @@
 "use client";
 
 import Link from 'next/link';
+import { useTranslation } from '../../../components/TranslationProvider';
 
 export default function GalleryDirectory() {
+  const dict = useTranslation();
 
   const publishedWorks = [
     { id: '101', title: 'The Last Samurai Apprentice', authors: 'Kenta & Aoi', genre: 'Fantasy', cover: 'https://via.placeholder.com/400x600/ff8c42/ffffff?text=Cover+Art', rating: '4.9' },
@@ -13,13 +15,13 @@ export default function GalleryDirectory() {
   return (
     <div className="container" style={{ padding: '3rem 1.5rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Public Gallery</h1>
-        <p style={{ color: 'var(--text-muted)' }}>Read completed manga and stories from our creator community</p>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>{dict.gallery.title}</h1>
+        <p style={{ color: 'var(--text-muted)' }}>{dict.gallery.subtitle}</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
         {publishedWorks.map(work => (
-          <Link href={`/gallery/${work.id}`} key={work.id}>
+          <Link href={`/${dict.locale}/gallery/${work.id}`} key={work.id}>
             <div style={{ 
               background: 'var(--card-bg)', 
               borderRadius: '16px', 
@@ -39,10 +41,10 @@ export default function GalleryDirectory() {
               <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>{work.genre}</span>
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.2rem' }}>{work.title}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>By {work.authors}</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>{dict.gallery.by} {work.authors}</p>
                 <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontWeight: 600 }}>⭐ {work.rating}</span>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--primary)', fontWeight: 600 }}>Read Now →</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--primary)', fontWeight: 600 }}>{dict.gallery.readNow} →</span>
                 </div>
               </div>
             </div>

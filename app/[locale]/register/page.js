@@ -3,8 +3,10 @@
 import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import styles from './register.module.css';
+import { useTranslation } from '../../../components/TranslationProvider';
 
 function RegisterForm() {
+  const dict = useTranslation();
   const searchParams = useSearchParams();
   const initRole = searchParams.get('role') || '';
   
@@ -15,44 +17,44 @@ function RegisterForm() {
   const handleRegister = (e) => {
     e.preventDefault();
     if (!role) {
-      alert("Please select a role.");
+      alert(dict.register.alertRole);
       return;
     }
     // Simulation since firebase credentials are dummy
-    alert(`Account created for ${email} as ${role}!`);
-    window.location.href = `/profile/${role}`;
+    alert(`${dict.register.alertSuccess} ${email} ${dict.register.as} ${role}!`);
+    window.location.href = `/${dict.locale}/profile/${role}`;
   };
 
   return (
     <div className={styles.authContainer}>
       <div className={styles.authCard}>
-        <h2 className={styles.authTitle}>Join MangaCollab</h2>
-        <p className={styles.authSubtitle}>Start your creative journey today</p>
+        <h2 className={styles.authTitle}>{dict.register.title}</h2>
+        <p className={styles.authSubtitle}>{dict.register.subtitle}</p>
         
         <form onSubmit={handleRegister} className={styles.authForm}>
           
           <div className={styles.roleSelection}>
-            <p className={styles.roleLabel}>I am a...</p>
+            <p className={styles.roleLabel}>{dict.register.iam}</p>
             <div className={styles.roleButtons}>
               <button 
                 type="button" 
                 className={`${styles.roleBtn} ${role === 'writer' ? styles.roleActive : ''}`} 
                 onClick={() => setRole('writer')}
               >
-                ✍️ Writer
+                ✍️ {dict.register.writer}
               </button>
               <button 
                 type="button" 
                 className={`${styles.roleBtn} ${role === 'illustrator' ? styles.roleActive : ''}`} 
                 onClick={() => setRole('illustrator')}
               >
-                🎨 Illustrator
+                🎨 {dict.register.illustrator}
               </button>
             </div>
           </div>
 
           <div className={styles.formGroup}>
-            <label>Email Address</label>
+            <label>{dict.register.email}</label>
             <input 
               type="email" 
               value={email} 
@@ -63,7 +65,7 @@ function RegisterForm() {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Password</label>
+            <label>{dict.register.password}</label>
             <input 
               type="password" 
               value={password} 
@@ -74,12 +76,12 @@ function RegisterForm() {
           </div>
 
           <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '0.8rem' }}>
-            Create Account
+            {dict.register.submit}
           </button>
         </form>
         
         <div className={styles.authFooter}>
-          Already have an account? <a href="/login" style={{ color: 'var(--primary)', fontWeight: '600' }}>Log In</a>
+          {dict.register.accountExists} <a href={`/${dict.locale}/login`} style={{ color: 'var(--primary)', fontWeight: '600' }}>{dict.register.login}</a>
         </div>
       </div>
     </div>
@@ -87,9 +89,10 @@ function RegisterForm() {
 }
 
 export default function Register() {
+  const dict = useTranslation();
   return (
     <div className="container">
-      <Suspense fallback={<div style={{ textAlign: 'center', marginTop: '5rem' }}>Loading form...</div>}>
+      <Suspense fallback={<div style={{ textAlign: 'center', marginTop: '5rem' }}>{dict?.register?.loading || 'Loading...'}</div>}>
          <RegisterForm />
       </Suspense>
     </div>

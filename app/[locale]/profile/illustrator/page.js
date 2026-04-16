@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import styles from '../../register/register.module.css';
+import { useTranslation } from '../../../../components/TranslationProvider';
 
 export default function IllustratorProfileSetup() {
+  const dict = useTranslation();
   const [alias, setAlias] = useState('');
   const [bio, setBio] = useState('');
   const [styleTag, setStyleTag] = useState('');
@@ -11,74 +13,74 @@ export default function IllustratorProfileSetup() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    alert('Illustrator Profile Saved!');
-    window.location.href = '/dashboard';
+    alert(dict.profile.illSaved);
+    window.location.href = `/${dict.locale}/dashboard`;
   };
 
   return (
     <div className="container">
       <div className={styles.authContainer} style={{ alignItems: 'flex-start', paddingTop: '4rem' }}>
         <div className={styles.authCard} style={{ maxWidth: '600px' }}>
-          <h2 className={styles.authTitle}>Complete Illustrator Profile</h2>
-          <p className={styles.authSubtitle}>Showcase your amazing art to writers</p>
+          <h2 className={styles.authTitle}>{dict.profile.illTitle}</h2>
+          <p className={styles.authSubtitle}>{dict.profile.illSubtitle}</p>
           
           <form onSubmit={handleSave} className={styles.authForm}>
             
             <div className={styles.formGroup}>
-              <label>Artist Alias / Name</label>
-              <input type="text" required value={alias} onChange={(e)=>setAlias(e.target.value)} placeholder="Art by..." />
+              <label>{dict.profile.alias}</label>
+              <input type="text" required value={alias} onChange={(e)=>setAlias(e.target.value)} placeholder={dict.profile.aliasPlaceholder} />
             </div>
 
             <div className={styles.formGroup}>
-              <label>Bio & Inspiration</label>
-              <textarea rows="4" required value={bio} onChange={(e)=>setBio(e.target.value)} placeholder="e.g. Influenced by 90s anime and cyberpunk vibes..."></textarea>
+              <label>{dict.profile.illBio}</label>
+              <textarea rows="4" required value={bio} onChange={(e)=>setBio(e.target.value)} placeholder={dict.profile.illBioPlaceholder}></textarea>
             </div>
 
             <div className={styles.formGroup}>
-              <label>Primary Art Style</label>
+              <label>{dict.profile.artStyle}</label>
               <select value={styleTag} onChange={(e)=>setStyleTag(e.target.value)} required>
-                <option value="" disabled>Select a style</option>
-                <option value="anime">Anime / Manga</option>
-                <option value="realistic">Semi-Realistic</option>
-                <option value="chibi">Chibi / Cute</option>
-                <option value="dark">Dark / Gothic</option>
+                <option value="" disabled>{dict.profile.selectStyle}</option>
+                <option value="anime">{dict.profile.styleAnime}</option>
+                <option value="realistic">{dict.profile.styleRealistic}</option>
+                <option value="chibi">{dict.profile.styleChibi}</option>
+                <option value="dark">{dict.profile.styleDark}</option>
               </select>
             </div>
 
             <div className={styles.formGroup}>
-              <label>Availability</label>
+              <label>{dict.profile.availability}</label>
               <select value={availability} onChange={(e)=>setAvailability(e.target.value)}>
-                <option value="part-time">Part-time (Hobbyist)</option>
-                <option value="full-time">Full-time (Serious/Paid)</option>
-                <option value="collaborative">Unpaid / Revenue Share</option>
+                <option value="part-time">{dict.profile.availPart}</option>
+                <option value="full-time">{dict.profile.availFull}</option>
+                <option value="collaborative">{dict.profile.availCollab}</option>
               </select>
             </div>
 
             <div className={styles.formGroup}>
-              <label>Upload Portfolio Images (Mockup)</label>
+              <label>{dict.profile.uploadPortfolio}</label>
               <div style={{ border: '2px dashed var(--border-color)', padding: '2rem', textAlign: 'center', borderRadius: '8px' }}>
                 <input type="file" accept="image/*" multiple />
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>Images will be uploaded to Firebase Storage</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>{dict.profile.uploadNote}</p>
               </div>
             </div>
 
             <div className={styles.formGroup}>
-              <label>Special Skills (Check all that apply)</label>
+              <label>{dict.profile.specialSkills}</label>
               <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input type="checkbox" /> Character Design
+                  <input type="checkbox" /> {dict.profile.skillCharDesign}
                 </label>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input type="checkbox" /> Background Art
+                  <input type="checkbox" /> {dict.profile.skillBgArt}
                 </label>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <input type="checkbox" /> Paneling / Layout
+                  <input type="checkbox" /> {dict.profile.skillPaneling}
                 </label>
               </div>
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1.5rem', padding: '0.8rem' }}>
-              Save Profile & Enter App
+              {dict.profile.saveProfile}
             </button>
           </form>
         </div>
