@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getDictionary } from '../../lib/dictionaries';
+import { getDictionary } from '../../../lib/dictionaries';
 
 export default async function Dashboard({ params }) {
   const { locale } = await params;
