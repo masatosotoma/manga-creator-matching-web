@@ -186,5 +186,19 @@
     "chatTitle": "Hilo de discusión del proyecto",
     "typeMessage": "Escribe un mensaje de equipo...",
     "send": "Enviar"
+  },
+  "admin": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Gestionar usuarios de la plataforma y moderación",
+    "name": "Nombre",
+    "role": "Rol",
+    "style": "Estilo",
+    "status": "Estado",
+    "actions": "Acciones",
+    "active": "Activo",
+    "suspended": "Suspendido",
+    "suspend": "Suspender",
+    "activate": "Activar",
+    "delete": "Eliminar"
   }
 }

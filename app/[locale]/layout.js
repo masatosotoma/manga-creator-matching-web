@@ -51,6 +51,7 @@ export default async function RootLayout({ children, params }) {
             <div className="container footer-container">
               <p>&copy; {new Date().getFullYear()} MangaCollab. {dict.navigation.allRightsReserved}</p>
               <div className="footer-links">
+                <a href={`/${locale}/admin`} className="footer-link">{dict.admin?.title || 'Admin'}</a>
                 <a href={`/${locale}/terms`} className="footer-link">{dict.navigation.terms}</a>
               </div>
             </div>

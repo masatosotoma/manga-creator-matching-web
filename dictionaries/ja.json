@@ -186,5 +186,19 @@
     "chatTitle": "プロジェクトディスカッションスレッド",
     "typeMessage": "チームメッセージを入力...",
     "send": "送信"
+  },
+  "admin": {
+    "title": "ユーザー管理",
+    "subtitle": "プラットフォームのユーザーとモデレーションを管理する",
+    "name": "名前",
+    "role": "役割",
+    "style": "スタイル",
+    "status": "ステータス",
+    "actions": "アクション",
+    "active": "アクティブ",
+    "suspended": "一時停止",
+    "suspend": "停止する",
+    "activate": "有効にする",
+    "delete": "削除"
   }
 }

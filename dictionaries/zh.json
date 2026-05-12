@@ -186,5 +186,19 @@
     "chatTitle": "项目讨论区",
     "typeMessage": "输入一条团队消息...",
     "send": "发送"
+  },
+  "admin": {
+    "title": "用户管理",
+    "subtitle": "管理平台用户和审核",
+    "name": "姓名",
+    "role": "角色",
+    "style": "风格",
+    "status": "状态",
+    "actions": "操作",
+    "active": "活跃",
+    "suspended": "已暂停",
+    "suspend": "暂停",
+    "activate": "激活",
+    "delete": "删除"
   }
 }

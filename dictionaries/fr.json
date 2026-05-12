@@ -186,5 +186,19 @@
     "chatTitle": "Fil de Discussion du Projet",
     "typeMessage": "Tapez un message d'équipe...",
     "send": "Envoyer"
+  },
+  "admin": {
+    "title": "Gestion des Utilisateurs",
+    "subtitle": "Gérer les utilisateurs de la plateforme et la modération",
+    "name": "Nom",
+    "role": "Rôle",
+    "style": "Style",
+    "status": "Statut",
+    "actions": "Actions",
+    "active": "Actif",
+    "suspended": "Suspendu",
+    "suspend": "Suspendre",
+    "activate": "Activer",
+    "delete": "Supprimer"
   }
 }

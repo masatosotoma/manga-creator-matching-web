@@ -186,5 +186,19 @@
     "chatTitle": "Project Discussion Thread",
     "typeMessage": "Type a team message...",
     "send": "Send"
+  },
+  "admin": {
+    "title": "User Management",
+    "subtitle": "Manage platform users and moderation",
+    "name": "Name",
+    "role": "Role",
+    "style": "Style",
+    "status": "Status",
+    "actions": "Actions",
+    "active": "Active",
+    "suspended": "Suspended",
+    "suspend": "Suspend",
+    "activate": "Activate",
+    "delete": "Delete"
   }
 }
