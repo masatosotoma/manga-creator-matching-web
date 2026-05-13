@@ -38,6 +38,7 @@ export default async function RootLayout({ children, params }) {
               <nav className="nav-links">
                 <a href={`/${locale}/search`} className="nav-link">{dict.navigation.discover}</a>
                 <a href={`/${locale}/gallery`} className="nav-link">{dict.navigation.gallery}</a>
+                <a href={`/${locale}/messages`} className="nav-link">{dict.messages.title}</a>
                 <a href={`/${locale}/login`} className="btn btn-outline">{dict.navigation.login}</a>
                 <a href={`/${locale}/register`} className="btn btn-primary">{dict.navigation.signup}</a>
                 <LanguageSwitcher currentLocale={locale} />
