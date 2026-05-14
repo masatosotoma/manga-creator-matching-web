@@ -13,9 +13,12 @@ export default function Messages() {
     { id: 2, name: "Aoi (Artist)", role: "illustrator", unread: false, lastMsg: dict.messages.lastMsg2 }
   ];
 
-  const conversation = [
-    { sender: "Kenta (Writer)", text: dict.messages.lastMsg1, time: "10:30 AM" }
-  ];
+  const conversationsData = {
+    1: [{ sender: "Kenta (Writer)", text: dict.messages.lastMsg1, time: "10:30 AM" }],
+    2: [{ sender: "Aoi (Artist)", text: dict.messages.lastMsg2, time: "09:15 AM" }]
+  };
+
+  const conversation = activeMessage ? (conversationsData[activeMessage.id] || []) : [];
 
   const sendReply = (e) => {
     e.preventDefault();

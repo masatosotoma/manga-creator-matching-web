@@ -34,7 +34,7 @@ export default async function Dashboard({ params }) {
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{m.genre}</p>
               </div>
               <div>
-                <button className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>{dict.dashboard.message}</button>
+                <Link href={`/${locale}/messages`} className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>{dict.dashboard.message}</Link>
               </div>
             </div>
           ))}
