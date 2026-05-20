@@ -1,35 +1,43 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from '../../../components/TranslationProvider';
 
 export default function AdminPage() {
   const dict = useTranslation();
   const adminDict = dict.admin || {};
 
-  // Dummy Users Data
-  const initialUsers = [
-    { id: 1, name: "Yuki", role: "illustrator", style: "Anime", status: "active" },
-    { id: 2, name: "Shiro", role: "writer", style: "Fantasy", status: "active" },
-    { id: 3, name: "Jin", role: "illustrator", style: "Dark", status: "suspended" },
-    { id: 4, name: "Rin", role: "writer", style: "Romance", status: "active" },
-    { id: 5, name: "Kenta", role: "illustrator", style: "Realistic", status: "active" }
-  ];
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const [users, setUsers] = useState(initialUsers);
-
-  const toggleStatus = (id) => {
-    setUsers(users.map(u => {
-      if (u.id === id) {
-        return { ...u, status: u.status === 'active' ? 'suspended' : 'active' };
-      }
-      return u;
-    }));
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/admin/users');
+      const body = await res.json();
+      setUsers(body.users || []);
+    } catch (e) {
+      console.error('Failed to fetch users', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const deleteUser = (id) => {
-    if (confirm("Are you sure you want to delete this user?")) {
-      setUsers(users.filter(u => u.id !== id));
+  useEffect(() => { fetchUsers(); }, []);
+
+  const performAction = async (action, userId, opts = {}) => {
+    if (action === 'delete' && !confirm('Are you sure you want to delete this user?')) return;
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, userId, ...opts })
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json?.error || 'action failed');
+      await fetchUsers();
+    } catch (err) {
+      alert('Action failed: ' + err.message);
     }
   };
 
@@ -83,14 +91,14 @@ export default function AdminPage() {
                   </td>
                   <td style={{ padding: '1rem', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
                     <button 
-                      onClick={() => toggleStatus(u.id)}
+                      onClick={() => performAction('toggleStatus', u.id)}
                       className="btn btn-outline"
                       style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}
                     >
-                      {u.status === 'active' ? (adminDict.suspend || 'Suspend') : (adminDict.activate || 'Activate')}
+                      {u.suspended ? (adminDict.activate || 'Activate') : (adminDict.suspend || 'Suspend')}
                     </button>
                     <button 
-                      onClick={() => deleteUser(u.id)}
+                      onClick={() => performAction('delete', u.id)}
                       className="btn btn-primary"
                       style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', background: '#ef4444', borderColor: '#ef4444' }}
                     >
@@ -99,6 +107,11 @@ export default function AdminPage() {
                   </td>
                 </tr>
               ))}
+              {loading && (
+                <tr>
+                  <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</td>
+                </tr>
+              )}
               {users.length === 0 && (
                 <tr>
                   <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
