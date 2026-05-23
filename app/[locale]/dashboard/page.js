@@ -12,7 +12,16 @@ export default async function Dashboard({ params }) {
   ];
 
   const projects = [
-    { id: 1, title: "The Last Samurai Apprentice", status: "In Progress", role: "Illustrating" }
+    { 
+      id: 1, 
+      title: "The Last Samurai Apprentice", 
+      status: "In Progress", 
+      role: "Illustrating",
+      progress: 65,
+      lastUpdate: "Aoi uploaded Chapter 1 sketches",
+      lastUpdateTime: "2h ago",
+      bannerImage: "/images/samurai_concept.png"
+    }
   ];
 
   return (
@@ -42,15 +51,43 @@ export default async function Dashboard({ params }) {
 
         {/* Projects Area */}
         <section style={{ background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>{dict.dashboard.activeProjects}</h2>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>{dict.dashboard.activeProjects}</h2>
           {projects.map(p => (
-            <div key={p.id} style={{ padding: '1rem', background: 'var(--bg-color)', borderRadius: '8px', marginBottom: '1rem' }}>
-              <h3 style={{ fontWeight: 700, marginBottom: '0.5rem' }}>{p.title}</h3>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
-                <span style={{ color: 'var(--text-muted)' }}>{dict.dashboard.role}: {p.role}</span>
-                <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{p.status}</span>
+            <Link key={p.id} href={`/${locale}/workspace/${p.id}`} className="project-card-link">
+              <div className="project-card">
+                <div className="project-card-banner" style={{ backgroundImage: `url(${p.bannerImage})` }}>
+                  <div className="project-card-overlay">
+                    <span className="project-card-badge">{p.status}</span>
+                  </div>
+                </div>
+                
+                <div className="project-card-body">
+                  <h3 className="project-card-title">{p.title}</h3>
+                  <div className="project-card-meta">
+                    <span>{dict.dashboard.role}: <strong>{p.role}</strong></span>
+                    <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>{p.lastUpdateTime}</span>
+                  </div>
+
+                  <div className="project-progress-container">
+                    <div className="project-progress-text">
+                      <span>Progress</span>
+                      <span>{p.progress}%</span>
+                    </div>
+                    <div className="project-progress-bar">
+                      <div className="project-progress-fill" style={{ width: `${p.progress}%` }}></div>
+                    </div>
+                  </div>
+
+                  <div className="project-card-footer">
+                    <span style={{ fontStyle: 'italic', fontSize: '0.75rem', maxWidth: '70%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>"{p.lastUpdate}"</span>
+                    <div className="avatar-group">
+                      <div className="avatar-bubble avatar-writer" title="Kenta (Writer)">K</div>
+                      <div className="avatar-bubble avatar-illustrator" title="Aoi (Artist)">A</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
           <button className="btn btn-outline" style={{ width: '100%', marginTop: '1rem', borderStyle: 'dashed' }}>
             {dict.dashboard.createProject}
