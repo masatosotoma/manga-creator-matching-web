@@ -584,7 +584,7 @@ ACTION: Kojiro grips the hilt, eyes blazing with newfound resolve.`,
                     color: 'white', 
                     display: 'flex', 
                     alignItems: 'center', 
-                    justify-content: 'center', 
+                    justifyContent: 'center', 
                     fontWeight: 700, 
                     fontSize: '0.85rem' 
                   }}>
