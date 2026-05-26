@@ -200,5 +200,23 @@
     "suspend": "停止する",
     "activate": "有効にする",
     "delete": "削除"
+  },
+  "createProject": {
+    "title": "新しい漫画プロジェクトの作成",
+    "subtitle": "漫画のビジョンを定義し、スタイルを選択し、それを実現するための完璧なパートナーを見つけましょう。",
+    "mangaTitleLabel": "漫画のタイトル",
+    "mangaTitlePlaceholder": "例: 道場の影",
+    "styleLabel": "アート＆レイアウトスタイル",
+    "genreLabel": "メインジャンル",
+    "targetAudienceLabel": "ターゲット層",
+    "rolesNeededLabel": "必要な共同制作担当",
+    "synopsisLabel": "あらすじとピッチ",
+    "synopsisPlaceholder": "ストーリーの概要を書いてください。短いフックを含めましょう...",
+    "projectScaleLabel": "プロジェクトの規模 / 長さ",
+    "submitButton": "プロジェクトのワークスペースを立ち上げる",
+    "backToDashboard": "ダッシュボードに戻る",
+    "successTitle": "🎉 漫画プロジェクトの初期化完了！",
+    "successMessage": "新しい漫画のワークスペースの準備ができました。脚本の作成、絵コンテのアップロード、制作パートナーの招待を開始できます。",
+    "goToWorkspace": "プロジェクトのワークスペースへ移動"
   }
 }

@@ -200,5 +200,23 @@
     "suspend": "Suspendre",
     "activate": "Activer",
     "delete": "Supprimer"
+  },
+  "createProject": {
+    "title": "Créer un Nouveau Projet de Manga",
+    "subtitle": "Définissez votre vision du manga, choisissez votre style et trouvez le partenaire idéal pour lui donner vie.",
+    "mangaTitleLabel": "Titre du Manga",
+    "mangaTitlePlaceholder": "ex. L'Ombre du Dojo",
+    "styleLabel": "Style Artistique & Mise en Page",
+    "genreLabel": "Genre Principal",
+    "targetAudienceLabel": "Démographie Cible",
+    "rolesNeededLabel": "Collaborateurs Requis",
+    "synopsisLabel": "Synopsis & Pitch",
+    "synopsisPlaceholder": "De quoi parle votre histoire ? Donnez une courte accroche...",
+    "projectScaleLabel": "Échelle / Durée du Projet",
+    "submitButton": "Lancer l'Espace de Travail du Projet",
+    "backToDashboard": "Retour au Tableau de Bord",
+    "successTitle": "🎉 Projet de Manga Initialisé !",
+    "successMessage": "Votre nouvel espace de travail de manga est prêt. Vous pouvez maintenant commencer à écrire, uploader des storyboards et inviter des partenaires créatifs.",
+    "goToWorkspace": "Aller à l'Espace de Travail"
   }
 }

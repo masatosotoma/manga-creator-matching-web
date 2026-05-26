@@ -200,5 +200,23 @@
     "suspend": "Suspend",
     "activate": "Activate",
     "delete": "Delete"
+  },
+  "createProject": {
+    "title": "Create New Manga Project",
+    "subtitle": "Define your manga vision, choose your style, and find the perfect partner to bring it to life.",
+    "mangaTitleLabel": "Manga Title",
+    "mangaTitlePlaceholder": "e.g. Shadow of the Dojo",
+    "styleLabel": "Art & Layout Style",
+    "genreLabel": "Primary Genre",
+    "targetAudienceLabel": "Target Demographic",
+    "rolesNeededLabel": "Collaborators Needed",
+    "synopsisLabel": "Synopsis & Pitch",
+    "synopsisPlaceholder": "What is your story about? Provide a brief hook...",
+    "projectScaleLabel": "Project Scale / Length",
+    "submitButton": "Launch Project Workspace",
+    "backToDashboard": "Back to Dashboard",
+    "successTitle": "🎉 Manga Project Initialized!",
+    "successMessage": "Your new manga workspace is ready. You can now start scriptwriting, upload storyboards, and invite creative partners.",
+    "goToWorkspace": "Go to Project Workspace"
   }
 }

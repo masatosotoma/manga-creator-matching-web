@@ -200,5 +200,23 @@
     "suspend": "暂停",
     "activate": "激活",
     "delete": "删除"
+  },
+  "createProject": {
+    "title": "创建新漫画项目",
+    "subtitle": "定义你的漫画构想，选择你的风格，并寻找完美的合作伙伴来将其变为现实。",
+    "mangaTitleLabel": "漫画标题",
+    "mangaTitlePlaceholder": "例如：道馆之影",
+    "styleLabel": "美术与排版风格",
+    "genreLabel": "主要类型",
+    "targetAudienceLabel": "目标受众年龄段",
+    "rolesNeededLabel": "需要的合作伙伴角色",
+    "synopsisLabel": "剧情简介与推介",
+    "synopsisPlaceholder": "你的故事讲了什么？提供一个简短的悬念...",
+    "projectScaleLabel": "项目规模 / 长度",
+    "submitButton": "启动项目工作区",
+    "backToDashboard": "返回仪表板",
+    "successTitle": "🎉 漫画项目初始化成功！",
+    "successMessage": "你的新漫画工作区已准备就绪。你现在可以开始撰写剧本、上传分镜脚本，并邀请创作伙伴。",
+    "goToWorkspace": "前往项目工作区"
   }
 }

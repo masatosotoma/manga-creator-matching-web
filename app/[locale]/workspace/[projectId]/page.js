@@ -11,12 +11,19 @@ export default function Workspace() {
   const router = useRouter();
   
   const locale = params?.locale || 'en';
-  const projectId = 'PROJECT-' + (params?.projectId || '1');
+  const rawProjectId = params?.projectId || '1';
+  const isCustom = rawProjectId.startsWith('user-proj-');
+  const projectId = isCustom ? rawProjectId : 'PROJECT-' + rawProjectId;
 
   // --- STATE ---
   const [activeTab, setActiveTab] = useState('creative'); // 'creative' | 'pipeline' | 'chat'
   const [projectStatus, setProjectStatus] = useState('Storyboarding');
   const [selectedChapter, setSelectedChapter] = useState(1);
+  const [projectTitle, setProjectTitle] = useState("The Last Samurai Apprentice");
+  const [teamMembers, setTeamMembers] = useState("Kenta (Writer) & Aoi (Illustrator)");
+  const [teamAvatars, setTeamAvatars] = useState(['K', 'A']);
+  const [mangaStyle, setMangaStyle] = useState("Manga");
+  const [mangaGenre, setMangaGenre] = useState("Fantasy");
   
   // Scripts state
   const [scriptContent, setScriptContent] = useState({
@@ -39,6 +46,68 @@ ACTION: Kojiro grips the hilt, eyes blazing with newfound resolve.`,
   const [showScriptModal, setShowScriptModal] = useState(false);
   const [newScriptTitle, setNewScriptTitle] = useState('');
   const [newScriptText, setNewScriptText] = useState('');
+
+  // Hydrate translation title
+  useEffect(() => {
+    if (dict?.workspace?.demoTitle && !isCustom) {
+      setProjectTitle(dict.workspace.demoTitle);
+    }
+  }, [dict, isCustom]);
+
+  // Load from localStorage if custom project
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`manga_project_${rawProjectId}`);
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          setProjectTitle(data.title);
+          setMangaStyle(data.style || "Manga");
+          setMangaGenre(data.genre || "Fantasy");
+          
+          // Formulate roles
+          const roles = data.rolesNeeded || [];
+          if (roles.includes("Writer")) {
+            setTeamMembers("You (Illustrator) & Match Pending (Writer)");
+            setTeamAvatars(['Y', '?']);
+          } else {
+            setTeamMembers("You (Writer) & Match Pending (Illustrator)");
+            setTeamAvatars(['Y', '?']);
+          }
+
+          // Override script contents
+          setScriptContent({
+            title: `Chapter 1 - First Outline`,
+            text: `[TITLE: ${data.title}]
+[STYLE: ${data.style || 'Manga'}]
+[GENRE: ${data.genre || 'Fantasy'}]
+[DEMOGRAPHIC: ${data.demographic || 'Shonen'}]
+
+Synopsis:
+${data.synopsis || 'No synopsis outline provided yet. Click "Upload New Script Draft" to get started!'}
+
+[CHAPTER 1 STORY ARCH TYPE]
+- Exposition: Introduce the main character and setting.
+- Rising Action: A conflict arises that tests their resolve.
+- Climax: A dramatic scene showcasing their unique abilities.
+- Resolution: A hook for the next chapter.
+
+[PANEL 1 DIRECTIVE]
+ACTION: Close-up on the protagonist's eyes, filled with determination.
+PROTAGONIST: "I will make my dream a reality..."`,
+            notes: `Workspace initialized for collaboration on ${data.title}. Seek matching creators by visiting the Discover tab!`
+          });
+        } catch (e) {
+          console.error("Error parsing custom project in workspace", e);
+        }
+      }
+    }
+  }, [rawProjectId]);
+
+  // Synchronize scriptNotesInput when scriptContent changes
+  useEffect(() => {
+    setScriptNotesInput(scriptContent.notes);
+  }, [scriptContent.notes]);
 
   // Art Assets state
   const [selectedArtTab, setSelectedArtTab] = useState('storyboard'); // 'storyboard' | 'character' | 'keyart'
@@ -190,14 +259,21 @@ ACTION: Kojiro grips the hilt, eyes blazing with newfound resolve.`,
               {projectId}
             </span>
           </div>
-          <h1 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0.25rem 0' }}>{dict.workspace.demoTitle}</h1>
+          <h1 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0.25rem 0' }}>{projectTitle}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              <strong>{dict.workspace.team}:</strong> Kenta (Writer) & Aoi (Illustrator)
+              <strong>{dict?.workspace?.team || 'Team'}:</strong> {teamMembers}
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="avatar-bubble avatar-writer">K</span>
-              <span className="avatar-bubble avatar-illustrator">A</span>
+              {teamAvatars.map((initial, idx) => (
+                <span 
+                  key={idx} 
+                  className={`avatar-bubble ${initial === 'K' || initial === 'Y' ? 'avatar-writer' : 'avatar-illustrator'}`}
+                  style={{ marginLeft: idx === 0 ? '0' : '-8px' }}
+                >
+                  {initial}
+                </span>
+              ))}
             </div>
           </div>
         </div>
