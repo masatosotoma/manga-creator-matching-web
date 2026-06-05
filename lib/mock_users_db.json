@@ -1,0 +1,139 @@
+[
+  {
+    "id": "u1",
+    "name": "Yuki",
+    "email": "yuki.art@example.com",
+    "role": "illustrator",
+    "style": "Anime",
+    "status": "active",
+    "reportsCount": 0,
+    "reports": [],
+    "suspendedReason": null,
+    "suspendedAt": null,
+    "createdAt": "2026-05-10T08:30:00Z"
+  },
+  {
+    "id": "u2",
+    "name": "Shiro",
+    "email": "shiro.novel@example.com",
+    "role": "writer",
+    "style": "Fantasy",
+    "status": "active",
+    "reportsCount": 0,
+    "reports": [],
+    "suspendedReason": null,
+    "suspendedAt": null,
+    "createdAt": "2026-05-12T14:22:00Z"
+  },
+  {
+    "id": "u3",
+    "name": "Jin",
+    "email": "jin.shadow@example.com",
+    "role": "illustrator",
+    "style": "Dark",
+    "status": "active",
+    "reportsCount": 0,
+    "reports": [],
+    "suspendedReason": null,
+    "suspendedAt": null,
+    "createdAt": "2026-05-15T11:05:00Z"
+  },
+  {
+    "id": "u4",
+    "name": "Rin",
+    "email": "rin.love@example.com",
+    "role": "writer",
+    "style": "Romance",
+    "status": "active",
+    "reportsCount": 1,
+    "reports": [
+      {
+        "id": "r1",
+        "reporter": "Jin",
+        "reason": "Suspicious off-site link",
+        "details": "Sent a link to a private Google Drive instead of uploading via the scripts tab.",
+        "createdAt": "2026-06-01T15:30:00Z"
+      }
+    ],
+    "suspendedReason": null,
+    "suspendedAt": null,
+    "createdAt": "2026-05-20T09:12:00Z"
+  },
+  {
+    "id": "u5",
+    "name": "SpammyUser",
+    "email": "spammy.bot@example.com",
+    "role": "writer",
+    "style": "Gothic",
+    "status": "active",
+    "reportsCount": 5,
+    "reports": [
+      {
+        "id": "r2",
+        "reporter": "Yuki",
+        "reason": "Spamming commercial links",
+        "details": "Sent unsolicited ads for a web hosting service in multiple chat sessions.",
+        "createdAt": "2026-06-02T10:10:00Z"
+      },
+      {
+        "id": "r3",
+        "reporter": "Jin",
+        "reason": "Unsolicited promotion",
+        "details": "Keeps sending links to buy crypto coins.",
+        "createdAt": "2026-06-03T11:20:00Z"
+      },
+      {
+        "id": "r4",
+        "reporter": "Shiro",
+        "reason": "Advertisements",
+        "details": "Spamming portfolio links of random other websites.",
+        "createdAt": "2026-06-03T12:00:00Z"
+      },
+      {
+        "id": "r5",
+        "reporter": "System Flag",
+        "reason": "High frequency messages",
+        "details": "Sent 50 messages with URL patterns in under 3 minutes.",
+        "createdAt": "2026-06-04T01:15:00Z"
+      },
+      {
+        "id": "r6",
+        "reporter": "Rin",
+        "reason": "Harassment",
+        "details": "Called me names when I asked them to stop sending advertisements.",
+        "createdAt": "2026-06-04T04:22:00Z"
+      }
+    ],
+    "suspendedReason": null,
+    "suspendedAt": null,
+    "createdAt": "2026-05-28T18:45:00Z"
+  },
+  {
+    "id": "u6",
+    "name": "BadActor",
+    "email": "bad.actor@example.com",
+    "role": "illustrator",
+    "style": "Chibi",
+    "status": "suspended",
+    "reportsCount": 12,
+    "reports": [
+      {
+        "id": "r7",
+        "reporter": "Shiro",
+        "reason": "Unauthorized distribution",
+        "details": "Found our collaborative draft manga uploaded on a third-party manga site under their own name, directly violating Terms Section 3.",
+        "createdAt": "2026-05-30T09:40:00Z"
+      },
+      {
+        "id": "r8",
+        "reporter": "System Admin",
+        "reason": "Copyright infringement",
+        "details": "Confirmed user is distributing platform-exclusive joint work on personal patreon page.",
+        "createdAt": "2026-05-31T14:00:00Z"
+      }
+    ],
+    "suspendedReason": "Violating Terms Section 3 (unauthorized distribution on third-party site)",
+    "suspendedAt": "2026-05-31T14:30:00Z",
+    "createdAt": "2026-05-18T10:00:00Z"
+  }
+]
